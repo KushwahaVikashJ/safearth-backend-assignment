@@ -6,7 +6,7 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/', async (req,res)=>{
-    const contact = await Contact.find();
+    const contact = await Contact.find().sort({name:1}).limit(10);
     res.send(contact);
 })
 
