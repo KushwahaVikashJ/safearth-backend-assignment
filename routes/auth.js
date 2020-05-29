@@ -9,10 +9,10 @@ router.post('/', async (req,res)=>{
     const {error} = validate(req.body);
     if(error) return res.status(400).send(error.details[0].message);
 
-    const user = await User.findOne({Email:req.body.Email});
+    const user = await User.findOne({email:req.body.email});
     if(!user) return res.status(404).send('User not found.');
 
-    const validPass = await bcrypt.compare(req.body.Password,user.Password);
+    const validPass = await bcrypt.compare(req.body.password,user.password);
     if(!validPass) return res.status(400).send('Not a valid Password.');
 
     const token = user.generateToken();
@@ -23,8 +23,8 @@ function validate(user){
 
     const schema = {
 
-        Email : Joi.string().required().min(5).max(50).email(),
-        Password : Joi.string().required().min(5).max(255)
+        email : Joi.string().required().min(5).max(50).email(),
+        password : Joi.string().required().min(5).max(255)
 
     }
 

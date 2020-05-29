@@ -13,18 +13,16 @@ const app = express();
 if(!config.get('jsonPrivateKey')) return console.log('Json Private Key not provided');
 
 process.on('uncaughtException', (ex)=>{  // to handle the unexception error out of the scope of express
-    console.log('Failed Unexception');
     winston.error(ex.message);
 })
 
 process.on('unhandledRejection', (ex)=>{  // to handle the unexception error out of the scope of express
-    console.log('Failed Rejection');
     winston.error(ex.message);
 })
 
 winston.add(new winston.transports.File({ filename:'logfile.log'}));
 winston.add(new winston.transports.MongoDB({ 
-    db:'mongodb://localhost/vidly'
+    db:'mongodb://localhost/phonebook'
 }));
 
 mongoose.connect('mongodb://localhost/phonebook',{useNewUrlParser: true,useUnifiedTopology: true,useCreateIndex: true})

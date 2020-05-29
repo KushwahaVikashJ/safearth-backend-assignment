@@ -11,7 +11,7 @@ router.get('/', async (req,res)=>{
 })
 
 router.get('/:name', async(req,res)=>{
-    const contact = await Contact.find({Name:req.params.name});
+    const contact = await Contact.find({name:req.params.name});
     res.send(contact);
 });
 
@@ -19,7 +19,7 @@ router.post('/', [auth,admin] , async (req,res)=>{
     const {error} = validate(req.body);
     if(error) return res.status(400).send(error.details[0].message);
 
-    let contact = new Contact(_.pick(req.body,['Name','DOB','Phone_Number','Email']));
+    let contact = new Contact(_.pick(req.body,['name','dateOfBirth','phoneNumber','email']));
 
     contact = await contact.save();
     res.send(contact);
@@ -30,12 +30,12 @@ router.put('/:name', [auth,admin] , async (req,res)=>{
     const {error} = validate(req.body);
     if(error) return res.status(400).send(error.details[0].message);
 
-    const contact = await Contact.updateOne({Name:req.params.name},{
+    const contact = await Contact.updateOne({name:req.params.name},{
         $set : {
-            Name : req.body.Name,
-            DOB : req.body.DOB,
-            Phone_Number : req.body.Phone_Number,
-            Email : req.body.Email
+            name : req.body.name,
+            dateOfBirth : req.body.dateOfBirth,
+            phoneNumber : req.body.phoneNumber,
+            email : req.body.email
         }},
         {
         new:true 
@@ -45,7 +45,7 @@ router.put('/:name', [auth,admin] , async (req,res)=>{
 })
 
 router.delete('/:name',[auth,admin], async (req,res)=>{
-    const contact = await Contact.deleteOne({Name:req.params.name});
+    const contact = await Contact.deleteOne({name:req.params.name});
     res.send(contact);
 })
 

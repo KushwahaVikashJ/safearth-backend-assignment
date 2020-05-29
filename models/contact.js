@@ -3,23 +3,23 @@ const Joi = require('joi');
 
 const contactSchema = new mongoose.Schema({
 
-    Name : {
+    name : {
         type : String,
         required : true,
         minlength : 5,
         maxlength : 50
     },
-    DOB: {
+    dateOfBirth: {
         type : String,
         required: true,
     },
-    Phone_Number : {
+    phoneNumber : {
         type : String,
         required : true,
         minlength : 10
     },
 
-    Email: {
+    email: {
         type:String,
         required:true,
         minlength:5,
@@ -32,10 +32,10 @@ const Contact = mongoose.model('contact',contactSchema);
 function validateContact(contact){
 
     const schema = {
-        Name : Joi.string().required().min(5).max(50),
-        DOB : Joi.string().required(),
-        Phone_Number : Joi.string().required().min(10),
-        Email : Joi.string().required().email().min(5).max(50)
+        name : Joi.string().required().min(5).max(50),
+        dateOfBirth : Joi.string().required(),
+        phoneNumber : Joi.string().required().min(10),
+        email : Joi.string().required().email().min(5).max(50)
     }
 
     return Joi.validate(contact,schema);
