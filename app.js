@@ -39,4 +39,4 @@ app.get('/',(req,res)=>{
 })
 
 const port = process.env.PORT || 3000;
-app.listen(port,()=>winston.info(`Listening on PORT ${port}....`));
+app.listen(port,()=>winston.info(`Listening On PORT ${port}....`));
