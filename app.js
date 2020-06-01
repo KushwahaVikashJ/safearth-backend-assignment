@@ -1,3 +1,5 @@
+const helmet = require('helmet');
+const compression =  require('compression');
 require('express-async-errors');
 const winston  = require('winston');           //logging library
 require('winston-mongodb');
@@ -22,16 +24,18 @@ process.on('unhandledRejection', (ex)=>{  // to handle the unexception error out
 
 winston.add(new winston.transports.File({ filename:'logfile.log'}));
 winston.add(new winston.transports.MongoDB({ 
-    db:'mongodb://localhost/phonebook'
+    db:'mongodb+srv://vikash:vsam@@@1999@phonebook-lnoyy.mongodb.net/test?retryWrites=true&w=majority'
 }));
 
-mongoose.connect('mongodb://localhost/phonebook',{useNewUrlParser: true,useUnifiedTopology: true,useCreateIndex: true})
+mongoose.connect('mongodb+srv://vikash:vsam@@@1999@phonebook-lnoyy.mongodb.net/test?retryWrites=true&w=majority',{useNewUrlParser: true,useUnifiedTopology: true,useCreateIndex: true})
 .then(()=> winston.info('Connected to DB'));
 
 app.use(express.json());
 app.use('/phonebook/',contacts);
 app.use('/user/',users);
 app.use('/auth/',auth);
+app.use(helmet());
+app.use(compression());
 app.use(error);
 
 app.get('/',(req,res)=>{

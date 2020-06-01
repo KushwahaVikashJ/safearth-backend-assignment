@@ -40,3 +40,21 @@
 {"errors":{"email":{"properties":{"message":"Path `email` is required.","type":"required","path":"email"},"kind":"required","path":"email"},"phoneNumber":{"properties":{"message":"Path `phoneNumber` is required.","type":"required","path":"phoneNumber"},"kind":"required","path":"phoneNumber"},"dateOfBirth":{"properties":{"message":"Path `dateOfBirth` is required.","type":"required","path":"dateOfBirth"},"kind":"required","path":"dateOfBirth"},"name":{"properties":{"message":"Path `name` is required.","type":"required","path":"name"},"kind":"required","path":"name"}},"_message":"contact validation failed","level":"error","message":"contact validation failed: email: Path `email` is required., phoneNumber: Path `phoneNumber` is required., dateOfBirth: Path `dateOfBirth` is required., name: Path `name` is required.contact validation failed: email: Path `email` is required., phoneNumber: Path `phoneNumber` is required., dateOfBirth: Path `dateOfBirth` is required., name: Path `name` is required.","stack":"ValidationError: contact validation failed: email: Path `email` is required., phoneNumber: Path `phoneNumber` is required., dateOfBirth: Path `dateOfBirth` is required., name: Path `name` is required.\n    at model.Document.invalidate (C:\\Users\\VIKAS\\node-course\\phonebook\\node_modules\\mongoose\\lib\\document.js:2564:32)\n    at C:\\Users\\VIKAS\\node-course\\phonebook\\node_modules\\mongoose\\lib\\document.js:2386:17\n    at C:\\Users\\VIKAS\\node-course\\phonebook\\node_modules\\mongoose\\lib\\schematype.js:1181:9\n    at processTicksAndRejections (internal/process/task_queues.js:79:11)"}
 {"message":"Listening on port 3000....","level":"info"}
 {"message":"Connected to DB","level":"info"}
+{"message":"Listening On PORT 3000....","level":"info"}
+{"message":"Connected to DB","level":"info"}
+{"message":"Listening On PORT 3000....","level":"info"}
+{"message":"Connected to DB","level":"info"}
+{"message":"Listening On PORT 3000....","level":"info"}
+{"message":"Connected to DB","level":"info"}
+{"message":"Listening On PORT 3000....","level":"info"}
+{"message":"Connected to DB","level":"info"}
+{"message":"Listening On PORT 3000....","level":"info"}
+{"message":"Connected to DB","level":"info"}
+{"message":"Listening On PORT 3000....","level":"info"}
+{"message":"Connected to DB","level":"info"}
+{"message":"Listening On PORT 3000....","level":"info"}
+{"message":"Connected to DB","level":"info"}
+{"message":"Listening On PORT 3000....","level":"info"}
+{"message":"Connected to DB","level":"info"}
+{"message":"Listening On PORT 3000....","level":"info"}
+{"message":"Connected to DB","level":"info"}
