@@ -1,8 +1,6 @@
 const helmet = require('helmet');
 const compression =  require('compression');
 require('express-async-errors');
-const winston  = require('winston');           //logging library
-require('winston-mongodb');
 const error = require('./middleware/error');
 const config = require('config');
 const auth = require('./routes/auth');
@@ -14,21 +12,9 @@ const app = express();
 
 if(!config.get('jsonPrivateKey')) return console.log('Json Private Key not provided');
 
-process.on('uncaughtException', (ex)=>{  // to handle the unexception error out of the scope of express
-    winston.error(ex.message);
-})
-
-process.on('unhandledRejection', (ex)=>{  // to handle the unexception error out of the scope of express
-    winston.error(ex.message);
-})
-
-winston.add(new winston.transports.File({ filename:'logfile.log'}));
-winston.add(new winston.transports.MongoDB({ 
-    db:'mongodb+srv://vikash:vsam@@@1999@phonebook-lnoyy.mongodb.net/test?retryWrites=true&w=majority'
-}));
-
 mongoose.connect('mongodb+srv://vikash:vsam@@@1999@phonebook-lnoyy.mongodb.net/test?retryWrites=true&w=majority',{useNewUrlParser: true,useUnifiedTopology: true,useCreateIndex: true})
-.then(()=> winston.info('Connected to DB'));
+.then(()=> console.log('Connected to DB'))
+.catch((ex)=> console.log(ex.message));
 
 app.use(express.json());
 app.use('/phonebook/',contacts);
@@ -43,4 +29,4 @@ app.get('/',(req,res)=>{
 })
 
 const port = process.env.PORT || 3000;
-app.listen(port,()=>winston.info(`Listening On PORT ${port}....`));
+app.listen(port,()=>console.log(`Listening On PORT ${port}....`));
