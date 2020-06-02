@@ -12,7 +12,7 @@ const app = express();
 
 if(!config.get('jsonPrivateKey')) return console.log('Json Private Key not provided');
 
-mongoose.connect('mongodb+srv://vikash:vsam@@@1999@cluster0-yycrx.mongodb.net/test?retryWrites=true&w=majority',{useNewUrlParser: true,useUnifiedTopology: true,useCreateIndex: true})
+mongoose.connect(config.get('db'),{useNewUrlParser: true,useUnifiedTopology: true,useCreateIndex: true})
 .then(()=> console.log('Connected to DB'))
 .catch((ex)=> console.log(ex.message));
 
