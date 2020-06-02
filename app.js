@@ -1,47 +1,10 @@
-const winston  = require('winston');           //logging library
-require('winston-mongodb');
-const helmet = require('helmet');
-const compression =  require('compression');
-require('express-async-errors');
-const error = require('./middleware/error');
-const config = require('config');
-const auth = require('./routes/auth');
-const users = require('./routes/users');
-const contacts = require('./routes/contacts');
-const mongoose = require('mongoose');
-const express = require('express');   
+const express = require('express');
 const app = express();
 
-if(!config.get('jsonPrivateKey')) return console.log('Json Private Key not provided');
-
-process.on('uncaughtException', (ex)=>{  // to handle the unexception error out of the scope of express
-    winston.error(ex);
-})
-
-process.on('unhandledRejection', (ex)=>{  // to handle the unexception error out of the scope of express
-    winston.error(ex);
-})
-
-winston.add(new winston.transports.File({ filename:'logfile.log'}));
-winston.add(new winston.transports.MongoDB({ 
-    db: config.get('db'),
-    options:{
-        useUnifiedTopology: true ,
-    },
-    level:'info'
-}));
-
-mongoose.connect(config.get('db'),{useNewUrlParser: true,useUnifiedTopology: true,useCreateIndex: true})
-.then(()=> console.log('Connected to DB'))
-.catch((ex)=> console.log(ex.message));
-
-app.use(express.json());
-app.use('/phonebook/',contacts);
-app.use('/user/',users);
-app.use('/auth/',auth);
-app.use(helmet());
-app.use(compression());
-app.use(error);
+require('./startup/config')();
+require('./startup/db')();
+require('./startup/logging')();
+require('./startup/routes')();
 
 app.get('/',(req,res)=>{
     res.send('Hello');
