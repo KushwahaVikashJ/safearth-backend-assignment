@@ -1,3 +1,4 @@
 {
-    "jsonPrivateKey" : ""
+    "jsonPrivateKey" : "",
+    "db":"mongodb+srv://vikash:vsam@@@1999@cluster0-yycrx.mongodb.net/test?retryWrites=true&w=majority"
 }
