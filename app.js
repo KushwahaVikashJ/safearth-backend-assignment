@@ -12,6 +12,23 @@ const app = express();
 
 if(!config.get('jsonPrivateKey')) return console.log('Json Private Key not provided');
 
+process.on('uncaughtException', (ex)=>{  // to handle the unexception error out of the scope of express
+    winston.error(ex);
+})
+
+process.on('unhandledRejection', (ex)=>{  // to handle the unexception error out of the scope of express
+    winston.error(ex);
+})
+
+winston.add(new winston.transports.File({ filename:'logfile.log'}));
+winston.add(new winston.transports.MongoDB({ 
+    db: config.get('db'),
+    options:{
+        useUnifiedTopology: true ,
+    },
+    level:'info'
+}));
+
 mongoose.connect(config.get('db'),{useNewUrlParser: true,useUnifiedTopology: true,useCreateIndex: true})
 .then(()=> console.log('Connected to DB'))
 .catch((ex)=> console.log(ex.message));
