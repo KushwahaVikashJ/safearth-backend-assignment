@@ -27,7 +27,6 @@ function validate(user){
         password : Joi.string().required().min(5).max(255)
 
     }
-
     return Joi.validate(user,schema);
 }
 
